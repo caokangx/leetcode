@@ -3,7 +3,7 @@
  * @param {number} k
  * @return {string}
  */
-var reverseStr = function (s, k) {
+ var reverseStr = function (s, k) {
   const { length } = s;
   s = s.split('');
   let i = 0;
