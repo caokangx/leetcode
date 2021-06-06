@@ -49,7 +49,7 @@ var findMaxForm = function (strs, m, n) {
           dp[i][j][k] = dp[i - 1][j][k];
         }
         else {
-          dp[i][j][k] = Math.max(dp[i - 1][j][k], dp[i - 1][j - item.value0][k - item.value1] + 1);
+          dp[i][j][k] = Math.max(dp[i - 1][j][k], dp[i - 1][j - item.value0][k - item.value1]);
         }
       }
     }
