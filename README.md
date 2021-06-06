@@ -27,3 +27,10 @@ https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0096.%E4
 
 https://leetcode-cn.com/problems/partition-equal-subset-sum/solution/0-1-bei-bao-wen-ti-xiang-jie-zhen-dui-ben-ti-de-yo/
 
+
+### 1049. 背包变体问题
+
+https://github.com/youngyangyang04/leetcode-master/blob/master/problems/1049.%E6%9C%80%E5%90%8E%E4%B8%80%E5%9D%97%E7%9F%B3%E5%A4%B4%E7%9A%84%E9%87%8D%E9%87%8FII.md
+
+1. 一开始我的思路错了，老是想着计算出前一状态的值，然后再重新判断后一状态，其实是不用的
+2. dp一般都是记录中间结果，不记录中间状态
