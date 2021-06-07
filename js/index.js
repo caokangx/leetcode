@@ -1,58 +1,36 @@
-// 背包问题，不过背包的value由一维变成了二维了
-
 /**
- * @param {string[]} strs
- * @param {number} m
- * @param {number} n
- * @return {number}
+ * @param {string} s
+ * @param {string[]} wordDict
+ * @return {boolean}
  */
-var findMaxForm = function (strs, m, n) {
-  const list = strs.map(str => {
-    const item = {
-      str,
-      value0: 0,
-      value1: 0
-    };
-    str.split('').forEach(char => {
-      if (char === '0') {
-        item.value0 += 1;
-      }
-      else {
-        item.value1 += 1;
-      }
-    });
-    return item;
-  });
+var wordBreak = function (s, wordDict) {
+  const m = s.length;
+  const n = wordDict.length;
+
   const dp = [];
-  for (let i = 0; i < list.length; i++) {
-    const row = [];
-    for (let j = 0; j <= m; j++) {
-      const subRow = [];
-      for (let k = 0; k <= n; k++) {
-        if (i === 0 && list[0].value0 <= j && list[0].value1 <= k) {
-          subRow.push(1);
-        }
-        else {
-          subRow.push(0);
-        }
-      }
-      row.push(subRow);
-    }
-    dp.push(row);
+  for (let i = 0; i < m; i++) {
+    dp.push(false);
   }
-  for (let i = 1; i < list.length; i++) {
-    for (let j = 0; j <= m; j++) {
-      for (let k = 0; k <= n; k++) {
-        const item = list[i];
-        // list[i] 装不下
-        if (j - item.value0 < 0 || k - item.value1 < 0) {
-          dp[i][j][k] = dp[i - 1][j][k];
+  for (let j = 0; j < wordDict.length; j++) {
+    if (s[0] === wordDict[j]) {
+      dp[0] = true;
+    }
+  }
+  for (let i = 1; i < m; i++) {
+    let flag = false;
+    for (let j = 0; j < n; j++) {
+      if (i + 1 - wordDict[j].length > 0) {
+        if (s.substring(i + 1 - wordDict[j].length, i + 1) === wordDict[j] && dp[i - wordDict[j].length]) {
+          flag = true;
         }
-        else {
-          dp[i][j][k] = Math.max(dp[i - 1][j][k], dp[i - 1][j - item.value0][k - item.value1] + 1);
+      }
+      else if (i + 1 - wordDict[j].length === 0) {
+        if (s.substring(i + 1 - wordDict[j].length, i + 1) === wordDict[j]) {
+          flag = true;
         }
       }
     }
+    dp[i] = flag;
   }
   return dp[list.length - 1][m][n];
 };
