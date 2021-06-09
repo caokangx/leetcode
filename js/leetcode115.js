@@ -10,11 +10,8 @@ var numDistinct = function (t, s) {
   for (let i = 0; i < m; i++) {
     const row = [];
     for (let j = 0; j < n; j++) {
-      if (i === 0 && j == 0) {
+      if (i === 0) {
         row.push(s[i] === t[j] ? 1 : 0);
-      }
-      else if (i === 0) {
-        row.push(s[i] === t[j] ? row[j - 1] + 1 : row[j - 1]);
       }
       else {
         row.push(0);
@@ -22,10 +19,10 @@ var numDistinct = function (t, s) {
     }
     dp.push(row);
   }
-  for (let i = 1; i < m; i++) {
+  for (let i = 0; i < m; i++) {
     for (let j = 1; j < n; j++) {
       if (s[i] === t[j]) {
-        dp[i][j] = dp[i][j - 1] + dp[i - 1][j - 1];
+        dp[i][j] = dp[i][j - 1] + 1;
       }
       else {
         dp[i][j] = dp[i][j - 1];
@@ -34,5 +31,3 @@ var numDistinct = function (t, s) {
   }
   return dp[m - 1][n - 1];
 };
-
-numDistinct("babgbag", "bag");
