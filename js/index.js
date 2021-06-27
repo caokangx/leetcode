@@ -79,6 +79,12 @@ var isSymmetric = function (root) {
   }
   return true;
 };
+function lastItem(arr) {
+  if (!arr.length) {
+    return -10000;
+  }
+  return arr[arr.length - 1];
+}
 
 const list = creatTree([1, 2, 2, null, 3, null, 3]);
 
